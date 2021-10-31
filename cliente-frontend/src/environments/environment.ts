@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  HOST: 'http://localhost:9999',
+  HOST_IMG: 'http://localhost:9999/images/no-usuario.png',
+  // HOST_IMG_UPLOAD: 'http://localhost:9999/api/uploads/img',
 };
 
 /*
