@@ -29,11 +29,18 @@ export class DetalleComponent implements OnInit {
   seleccionarFoto(event) {
     this.fotoSeleccionada = event.target.files[0];
     this.progreso = 0;
+
     console.log(this.fotoSeleccionada);
+
+    if (this.fotoSeleccionada === undefined){
+      return Swal.fire('No seleccionado: ', 'No seleccionaste ningun elemento', 'warning');
+    }
+
     if (this.fotoSeleccionada.type.indexOf('image') < 0) {
       Swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
       this.fotoSeleccionada = null;
     }
+
   }
 
   subirFoto() {
@@ -41,8 +48,9 @@ export class DetalleComponent implements OnInit {
     if (!this.fotoSeleccionada) {
       Swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
     } else {
-      this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id)
-        .subscribe(event => {
+      this.clienteService.subirFoto(this.fotoSeleccionada, this.cliente.id).subscribe(event => {
+          console.log(event);
+
           if (event.type === HttpEventType.UploadProgress) {
             this.progreso = Math.round((event.loaded / event.total) * 100);
           } else if (event.type === HttpEventType.Response) {

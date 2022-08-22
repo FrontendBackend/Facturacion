@@ -30,8 +30,10 @@
                   <div class="custom-file">
                     <input (change)="seleccionarFoto($event)" type="file" class="form-control form-control-sm"
                       id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+
                     <label class="form-label" for="inputGroupFile04"></label>
                   </div>
+
                   <div class="input-group-append">
                     <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary"
                       type="button" id="inputGroupFileAddon04">Subir</button>

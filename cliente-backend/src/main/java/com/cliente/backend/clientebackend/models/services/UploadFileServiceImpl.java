@@ -58,8 +58,12 @@ public class UploadFileServiceImpl implements IUploadFileService {
 	public boolean eliminar(String nombreFoto) {
 		
 		if(nombreFoto !=null && nombreFoto.length() >0) {
+
 			Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
 			File archivoFotoAnterior = rutaFotoAnterior.toFile();
+
+			// Caso 1: Si la imagen existe, lo que hará es reemplazar al anterior por la nueva
+			// Caso 2: Si la imagen desea ser eliminada, se eliminará de la carpeta Upload de este entorno
 			if(archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
 				archivoFotoAnterior.delete();
 				return true;
